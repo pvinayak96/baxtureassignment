@@ -8,6 +8,14 @@ app.listen(process.env.PORT, process.env.HOST, ()=>{
     console.log("Server is listening on " + process.env.HOST + " at " +process.env.PORT+ " port")
 })
 
+
+if(process.env.NODE_ENV === 'production'){
+    console.log('Backend is running on prod');
+}
+else{
+    console.log('Backend is running on dev mode');
+}
+
 //Middleware to parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
@@ -23,3 +31,4 @@ app.use((err,req,res,next)=>{
     console.error(err); //For logging/ debugging purposes
     res.status(500).json({error: 'Internal Server Error'})
 })
+

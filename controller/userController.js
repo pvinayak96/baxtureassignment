@@ -70,7 +70,8 @@ const updateUser = async (req, res) =>{
         if(userIndex == -1){
             return res.status(404).json({error : 'User not found!!'})
         }
-        userDB[userIndex] = {userId, username,age, hobbies};
+        const id= userId;
+        userDB[userIndex] = {id, username,age, hobbies};
         res.status(200).json(userDB[userIndex]);
     }
     catch(err){
