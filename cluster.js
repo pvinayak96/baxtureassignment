@@ -22,8 +22,11 @@ if (cluster.isMaster) {
 
     app.use((req, res, next) => {
         currentServer = (currentServer + 1) % servers.length; //Round robin algorithm
-        console.log(`http://${process.env.HOST}:${servers[currentServer]}${req.url}`);
-        res.redirect(302, `http://[::1]:${servers[currentServer]}${req.url}`);
+
+        //Comment any of the below lines accordingly to IPv4 or IPv6 
+        //res.redirect(302, `http://[::1]:${servers[currentServer]}${req.url}`);
+        res.redirect(302, `http://${process.env.HOST}:${servers[currentServer]}${req.url}`);
+        
     })
 
 }
